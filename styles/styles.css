@@ -1,0 +1,27 @@
+p{
+    font-weight:bold;
+    font-size: 20px;
+    color: white;
+    
+}
+#top{
+    text-decoration: underline;
+}
+
+
+body{
+    background-color: rgb(190, 222, 235);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    border:5px solid rgb(37, 37, 91);
+    margin: 20px;
+    padding: 10px;
+}
+
+.centered-list{
+    padding-left: 0;
+    list-style-position: outside;
+    margin: 0 auto;
+    display: table;
+    text-align: left;
+}

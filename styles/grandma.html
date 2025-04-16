@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grandma's Chocolate Wisdom</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #fff5e6;
+      color: #5a3e36;
+      text-align: center;
+      padding: 40px;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    h1 {
+      color: #ff69b4; /* Pink color for the header */
+      font-family: 'Brush Script MT', cursive;
+      font-size: 3em;
+    }
+
+    h1::after {
+      content: " 🍫"; /* Add chocolate emoji after the header */
+    }
+
+    input[type="range"] {
+      width: 60%;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.1em;
+      background-color: #ff69b4; /* Pink button */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff1493; /* Slightly darker pink on hover */
+    }
+
+    .advice-box {
+      margin-top: 30px;
+      background-color: #fff;
+      border: 2px dashed #d2b48c;
+      padding: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 12px;
+      font-size: 1.2em;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    .bedtime-mode {
+      margin-top: 20px;
+      background-color: #444;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .bedtime-mode.active {
+      background-color: #2f3b52;
+    }
+
+    .bedtime-mode input {
+      margin-right: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>How Much Do You Crave Chocolate?</h1>
+  <p>Slide to rate your craving (1 - Mild... 10 - Emergency!)</p>
+
+  <input type="range" id="chocoRange" min="1" max="10" value="5" />
+  <div>Craving Level: <span id="cravingLevel">5</span>/10</div>
+
+  <button onclick="giveAdvice()">Get Grandma's Advice</button>
+
+  <div class="advice-box" id="adviceBox">
+    <p><em>Grandma is waiting to give you some sweet advice...</em></p>
+  </div>
+
+  <div class="bedtime-mode" id="bedtimeToggle">
+    <label for="bedtime">Bed-Time Mode:</label>
+    <input type="checkbox" id="bedtime" onchange="toggleBedtimeMode()">
+  </div>
+
+  <script>
+    const advice = {
+      1: "Sweetheart, have a glass of water and a little walk — you’re doing just fine.",
+      2: "A tiny square of dark chocolate never hurt anyone. Just don’t forget your veggies!",
+      3: "Maybe one cookie. But only after you’ve called your mother.",
+      4: "I know that feeling... make some tea, then we’ll talk chocolate.",
+      5: "Moderation is the spice of life — but also, fudge exists for a reason.",
+      6: "Get that chocolate — but eat it slowly, like a lady.",
+      7: "You sound like you need brownies. From scratch. I’ll help.",
+      8: "Life’s short. Have two. Just remember to share with your sister.",
+      9: "This sounds serious. Put on your cozy socks and grab the emergency truffles.",
+      10: "Oh honey, bring out the chocolate cake and I’ll bring the napkins. You deserve it!"
+    };
+
+    const slider = document.getElementById('chocoRange');
+    const levelText = document.getElementById('cravingLevel');
+
+    slider.addEventListener('input', () => {
+      levelText.textContent = slider.value;
+    });
+
+    function giveAdvice() {
+      const level = parseInt(slider.value);
+      const message = advice[level] || "Grandma's still thinking...";
+      document.getElementById('adviceBox').innerHTML = `<p>"${message}"</p>`;
+    }
+
+    function toggleBedtimeMode() {
+      const body = document.body;
+      const adviceBox = document.getElementById('adviceBox');
+      const bedtimeButton = document.getElementById('bedtimeToggle');
+      
+      if (document.getElementById('bedtime').checked) {
+        body.style.backgroundColor = "#2f3b52";
+        body.style.color = "white";
+        adviceBox.style.backgroundColor = "#4b5c75";
+        bedtimeButton.classList.add('active');
+      } else {
+        body.style.backgroundColor = "#fff5e6";
+        body.style.color = "#5a3e36";
+        adviceBox.style.backgroundColor = "#fff";
+        bedtimeButton.classList.remove('active');
+      }
+    }
+  </script>
+
+</body>
+</html>
